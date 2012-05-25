@@ -1,4 +1,5 @@
-gideros_gameminion_api
+gideros_rest_apis
 ======================
 
-Gideros Library for GameMinion
+Gideros Libraries to interact with various RESTful APIs 
+

@@ -1,0 +1,115 @@
+-----------------------------------------------------------------------------------------
+-- GameMinion API
+-----------------------------------------------------------------------------------------
+return {
+   base_url = "https://api.gameminion.com",
+   name = "GameMinion API",
+   version = 0,
+   methods = {
+
+      -- ------------------------------------------------------------------------------ 
+      -- User API
+      -- ------------------------------------------------------------------------------
+      login = {
+         path = "user_sessions/user_login.json",
+         required_params = { "login", "password", },
+         method = "POST",
+      },
+
+      registerUser = { 
+         path = "users.json",
+         required_params = { "firstName", "lastName", "username", "email", "password" },
+         method = "POST",
+      },
+
+      getMyProfile = {
+         path = "users/my_profile.json",
+         method = "GET",
+         authentication = true,
+      },
+      
+      getUserProfile = {
+         path = "users/:userid.json",
+         required_params = { "userid" },
+         method = "GET",
+         authentication = true,
+      },
+
+      -- ------------------------------------------------------------------------------ 
+      -- Leaderboard API
+      -- ------------------------------------------------------------------------------
+      getLeaderboards = {
+         path = "leaderboards.json",
+         method = "GET",
+         authentication = true,
+      },
+
+      getLeaderboard = {
+         path = "leaderboards/:leaderboard.json",
+         required_params = { "leaderboard" },
+         method = "GET",
+         authentication = true,
+      },
+
+      submitHighScore = {
+         path = "leaderboards/:leaderboard/scores.json",
+         required_params = { "leaderboard", "value" },
+         method = "POST",
+         authentication = true,
+      },
+
+      getHighScores = {
+         path = "leaderboards/:leaderboard/scores.json",
+         required_params = { "leaderboard" },
+         method = "GET",
+         authentication = true,
+      },
+
+      -- ------------------------------------------------------------------------------
+      -- Friends API 
+      -- ------------------------------------------------------------------------------
+      getFriends = {
+         path = "friends.json",
+         method = "GET",
+         authentication = true,
+      },
+
+      addFriend = {
+         path = "friends.json",
+         required_params = { "friend_id" },
+         method = "POST",
+         authentication = true,
+      },
+
+      removeFriend = {
+         path = "friends.json",
+         required_params = { "friend_id" },
+         method = "DELETE",
+         authentication = true,
+      },
+
+      -- ------------------------------------------------------------------------------ 
+      -- News API
+      -- ------------------------------------------------------------------------------
+      getNews = {
+         path = "news.json",
+         method = "GET",
+         authentication = true,
+      },
+
+      getUnreadNews = {
+         path = "news/unread.json",
+         method = "GET",
+         authentication = true,
+      },
+
+      getNewsArticle = {
+         path = "news/:article.json",
+         required_params = { "article" },
+         method = "GET",
+         authentication = true,
+      },
+   
+   },
+};
+
