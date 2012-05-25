@@ -31,7 +31,7 @@ function restCall(baseUrl, path, method, headers, argList, callback)
    local urlLoader = UrlLoader.new(url, methods[method], headers)
 
    -- Add event handlers
-   function handleResponse(response, error)
+   function handleResponse(mycallback, response, error)
       response.url     = url
       response.method  = method
       response.error   = error
@@ -43,9 +43,9 @@ function restCall(baseUrl, path, method, headers, argList, callback)
       else
          response.data    = {}
       end
-      if callback then callback(response) end
+      if mycallback then mycallback(response) end
    end
 
-   urlLoader:addEventListener(Event.COMPLETE, function(response) handleResponse(response, false) end)
-   urlLoader:addEventListener(Event.ERROR,    function(response) handleResponse(response, true) end)
+   urlLoader:addEventListener(Event.COMPLETE, function(mycallback, response) handleResponse(mycallback, response, false) end, callback)
+   urlLoader:addEventListener(Event.ERROR,    function(mycallback, response) handleResponse(mycallback, response, true) end,  callback)
 end
